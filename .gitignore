@@ -1,0 +1,9 @@
+# Secrets et vraies données : jamais sur GitHub
+.env
+donnees/
+
+# Fichiers techniques
+__pycache__/
+.venv/
+
+exercice_comprehension.py

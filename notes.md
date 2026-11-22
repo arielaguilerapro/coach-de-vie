@@ -1,5 +1,6 @@
-J'ai fini la deuxieme journee
+debut 13:45
+fin avec 1h de retard
 
-C'était un peu plus difficile, trouves-tu que j'ai posé trop de questions ? Que je me suis trop fait aidé ? 
+mettre des exercices passerelles entre le cours et l'atelier, pour le moment je les fait directement en conversation avec l'IA
 
-Si la difficulté est progressive j'ai peur de bloquer à des moments.
+je me pose encore des questions sur mon retard, sur quoi était basé la vitesse de progression prévu ?
