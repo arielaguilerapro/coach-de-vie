@@ -1,3 +1,31 @@
+import json
+
+def sauvegarder(agenda, chemin):
+    with open(chemin, 'w', encoding='utf-8') as fichier_json:
+        json.dump(agenda, fichier_json)
+
+def charger(chemin):
+    """
+    Permet de charger un agenda
+    Paramètre : le chemin vers le fichier json qui contient l'agenda
+    Retour : 
+             La liste présente dans le fichier json
+             SI le fichier est introuvable, renvoie une liste vide
+             SI le fichier est abîmé, ne touche à rien, renvoie None
+
+    """
+    chargement = []
+    try:
+        with open(chemin, encoding='utf-8') as fichier_json:
+            chargement = json.load(fichier_json)
+            return chargement
+    except FileNotFoundError:
+        print("Fichier introuvable, l'agenda a été créé")
+        return chargement
+    except json.decoder.JSONDecodeError:
+        print("Fichier abîmé")
+        
+
 def debut(entree):
     return entree["debut"]
 
@@ -68,25 +96,9 @@ def reste(agenda, ressource, date_limite, reserve_depart):
                     reserve += ress['quantite']
     return reserve
 
-agenda = []
 
-ajouter_entree(agenda, "Dentiste", "rendez-vous", "2026-11-24 15:00", "moi", [{'nom': "argent", 'quantite': -25, 'statut': "estimée"},], 30)
-ajouter_entree(agenda, "Sport", "séance", "2026-11-24 18:00", "moi", [{'nom': "énergie", 'quantite': -4, 'statut': "estimée"},], 60)
-ajouter_entree(agenda, "Courses", "tâche", "2026-11-25", "foyer", [{'nom': "argent", 'quantite': -85, 'statut': "estimée"},], None)
-ajouter_entree(agenda, "Cinéma", "rendez-vous", "2026-11-27 20:30", "foyer", [{'nom': "argent", 'quantite': -24, 'statut': "estimée"},], 120)
-ajouter_entree(agenda, "Salaire", "revenu", "2026-11-28", "foyer", [{'nom': "argent", 'quantite': 1450, 'statut': "confirmée"},], None)
-ajouter_entree(agenda, "Loyer", "dépense", "2026-12-05", "foyer", [{'nom': "argent", 'quantite': -650, 'statut': "estimée"},], None)
-ajouter_entree(agenda, "Courses", "tâche", "2026-11-28", "foyer", [{'nom': "argent", 'quantite': -110, 'statut': "estimée"},], None)
-ajouter_entree(agenda, "Électricité", "dépense", "2026-12-02", "foyer", [{'nom': "argent", 'quantite': -72, 'statut': "confirmée"},], None)
-afficher_semaine(agenda, "2026-11-23", "2026-11-29")
 
-assert reste(agenda, "argent", "2026-11-24", 420) == 395
-assert reste(agenda, "argent", "2026-11-27", 420) == 286
-assert reste(agenda, "argent", "2026-11-28", 420) == 1626
-assert reste(agenda, "argent", "2026-12-05", 420) == 904
+agenda = charger("donnees/agenda.json")
 
-ajouter_entree(agenda, "Pharmacie", "dépense", "2026-11-26", "foyer", [{'nom': "argent", 'quantite': -12, 'statut': "estimée"}], None)
-assert reste(agenda, "argent", "2026-11-27", 420) == 274
-
-ajouter_entree(agenda, "manger", "tâche", "2026-12-02", "foyer")
-print(agenda[-1]['ressources'])
+if agenda is not None:
+    sauvegarder(agenda, "donnees/agenda.json")

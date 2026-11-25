@@ -1,6 +1,46 @@
-debut 13:45
-fin avec 1h de retard
+## Mardi 24 novembre
+- Début : 17 h 15 · Fin : 20h15
+- J'ai perdu beaucoup de temps à me mettre en place
+- Fait :
+  - OpenClassrooms partie 3, chapitre 3 « Chargez des données avec Python », et son exercice P3C3 (test réussi)
+  - JSON : dumps / loads, dump / load, encodage
+  - Atelier « enregistrer et recharger » : sauvegarder fonctionne, charger est écrit
+- Écarts par rapport au planning :
+  - Première séance le soir après le travail : efficacité réduite
+  - Le chapitre 3 s'appuie sur le chapitre 2 (web scraping), absent du planning : du temps perdu sur un passage
+  - L'exercice du chapitre n'était pas compté dans le temps du cours
+  - Bloc exceptions pas encore fait : deuxième moitié de la séance, demain soir
+- Questions et points en suspens :
+  - Où appeler charger au lancement, et que deviennent les 8 ajouter_entree ?
+  - Ligne 8 : encodage manquant dans le open de charger
+  - P3C3 : transform modifie et renvoie le tableau, style sort() ou sorted() ?
 
-mettre des exercices passerelles entre le cours et l'atelier, pour le moment je les fait directement en conversation avec l'IA
-
-je me pose encore des questions sur mon retard, sur quoi était basé la vitesse de progression prévu ?
+## Mercredi 25 novembre
+- Début : 17 h 35 · Fin : 18 h 55
+- Séance 1, partie B (1 h 30 prévue) : finie avec 10 min d'avance, utilisées pour les points en suspens
+- Fait :
+  - Test de relance : 8 entrées après deux lancements (déjà fait mardi soir)
+  - Passerelle erreurs : open dans un try / except
+  - Atelier « un chargement qui ne plante jamais » : charger renvoie la liste (fichier normal), une liste vide (fichier absent) ou None (fichier abîmé), et le script ne sauvegarde que si agenda n'est pas None
+  - Contrôle de la séance 1 : les 3 tests passent (relancé deux fois : 8 entrées ; sans fichier : démarre vide ; fichier abîmé : un message, pas de plantage, fichier intact)
+  - Les 8 ajouter_entree de démo retirés du code : les entrées sont dans donnees/agenda.json, avec une copie dans exemple_agenda.json à la racine
+  - Docstring de charger
+  - Passerelle dictionnaire : une fonction qui ajoute une clé à un dictionnaire reçu en paramètre
+- Compris :
+  - Une fonction qui arrive au bout sans return renvoie None
+  - Une liste ou un dictionnaire modifié dans une fonction est aussi modifié à l'extérieur (objets « mutables ») ; donner une nouvelle valeur au paramètre, en revanche, ne se voit pas dehors
+  - ^C dans le terminal = Ctrl+C : interrompt la ligne ou le programme en cours (sans sélection, ça ne copie pas)
+- Réponses aux questions de mardi :
+  - Charger au lancement et les 8 ajouter_entree : réglé
+  - Encodage dans le open de charger : corrigé
+  - P3C3 : transform modifie la liste reçue sur place (comme sort()) et la renvoie ; ce qu'elle renvoie est la même liste, pas une copie (contrairement à sorted())
+- Temps réel (à peu près) : reprise 10 min · bloc erreurs 15 min · atelier 35 min · points en suspens et passerelle dictionnaire 15 min · commit et notes 5 min
+- Écarts par rapport au planning :
+  - Le code de l'atelier (try / except) était déjà écrit mardi soir : l'atelier a surtout servi à tester et à régler le cas du fichier abîmé
+  - Les entrées de démo ne sont plus dans le code : à prendre en compte pour le jeu de test des séances 2 et 3
+- Questions et points en suspens :
+  - Ligne 14 : « Null » dans la docstring ; en Python, c'est None
+  - Ligne 23 : le message dit « l'agenda a été créé » ; à ce moment-là, le fichier existe-t-il déjà ?
+  - Où est passé l'appel à afficher_semaine ? Le script n'affiche plus rien
+  - Ligne 95 : un espace de trop (17 au lieu de 16)
+  - Hors planning : que se passe-t-il chez quelqu'un qui clone le dépôt, sans dossier donnees/ ? (la correction complète demande une notion pas encore vue)
