@@ -44,3 +44,51 @@
   - Où est passé l'appel à afficher_semaine ? Le script n'affiche plus rien
   - Ligne 95 : un espace de trop (17 au lieu de 16)
   - Hors planning : que se passe-t-il chez quelqu'un qui clone le dépôt, sans dossier donnees/ ? (la correction complète demande une notion pas encore vue)
+
+## Jeudi 26 novembre
+- Début : 18 h 30 environ · Fin :
+- Séance 2, partie A (1 h 30 prévue), sur le PC du travail : une bonne partie du temps est partie dans l'installation
+- Fait :
+  - Installation sur le PC du travail : Python 3.15 (Python Install Manager, depuis le Microsoft Store), extension Python de VS Code, Git
+  - Clone du dépôt OpenClassrooms : la première tentative a échoué, car l'adresse en /tree/main/P3 désigne une page du dépôt, pas le dépôt lui-même
+  - OpenClassrooms partie 3, chapitre 1 « Importez des packages Python », et son exercice
+  - Tutoriel 4.9.2 : les arguments nommés
+  - Documentation de datetime, lue avec un guide pas à pas en deux étapes : les trois types (date, datetime, timedelta), puis strptime et les codes de format
+  - Passerelle dates : les cinq lignes, prédiction puis lancement
+- Réponses aux questions de mercredi :
+  - Ligne 14, « Null » dans la docstring : déjà corrigé en None
+  - Ligne 23 : au moment du print, le fichier n'existe pas encore (c'est sauvegarder qui le crée). Message corrigé en « Fichier introuvable »
+  - Appel à afficher_semaine : remis, dans le if agenda is not None (avec un agenda None, afficher_semaine planterait)
+  - Ligne 95 : espace de trop retiré
+- Passerelle dates (prédiction → résultat) :
+  - datetime.strptime("2027-02-31", "%Y-%m-%d") :
+  - datetime.strptime("2026-11-25", "%Y-%m-%d %H:%M") :
+  - datetime.strptime("2026-11-24 15:00", "%Y-%m-%d %H:%M").weekday() :
+  - date(2026, 11, 24) + timedelta(days=7) :
+  - datetime(2026, 11, 24, 15, 0) + timedelta(minutes=30) :
+- Compris :
+  - import datetime → il faut écrire datetime.datetime ; from datetime import datetime → datetime suffit
+  - Un =0 dans une signature est une valeur par défaut : le paramètre est facultatif
+  - Mieux vaut écrire le nom du paramètre, comme timedelta(days=7) : le code se relit beaucoup plus facilement
+  - Un objet, ce sont des données et ce qu'on peut faire avec. La classe est le moule (datetime.datetime), l'objet est ce qui en sort
+  - Python affiche un objet avec sa classe et ce qu'il contient, par exemple datetime.date(2026, 12, 25)
+  - Une date moins une date donne un timedelta : c'est déjà programmé dans le module
+  - %m le mois, %M les minutes ; %y l'année sur 2 chiffres, %Y sur 4 chiffres
+  - strptime : le masque décrit la forme du texte, dans l'ordre qu'on veut. Ce que le masque ne demande pas prend une valeur par défaut (00:00, mois 01) ; ce qu'il demande doit être présent et au bon format, sinon ValueError
+  - Python ne devine pas l'intention : %M à la place de %m donne une date fausse, sans erreur. Les résultats attendus du jeu de test servent à repérer ce genre d'erreur dans le masque
+  - Le piège pour l'agenda : un seul masque ne peut pas accepter à la fois « jour seul » et « jour et heure »
+- Temps réel (à peu près) :
+- Écarts par rapport au planning :
+  - Nouveau PC, sans Python ni Git : installation pendant la séance
+  - La doc de datetime est difficile à lire sans aide : apprendre à lire une doc (carte des types, exemples en >>>, signatures, essais dans l'interpréteur)
+  - Essais sur les arguments nommés sautés pour gagner du temps
+  - Projet ramené par clé USB : il faut synchroniser les deux PC
+- Questions et points en suspens :
+  - afficher_semaine affiche toujours la semaine du 1er au 7 juin 2024 : choisir une semaine dont je connais le contenu
+  - Après la ligne 1 de la passerelle, Python « s'en fout »-il vraiment des valeurs qu'il lit ?
+  - Que se passe-t-il si le masque n'a pas l'année, ou pas le jour ? (essai à faire)
+  - Essai à faire : timedelta(30)  # 30 minutes. Qui a raison, le commentaire ou le code ?
+  - datetime(2026, 11, 24) et datetime.strptime(texte, masque) : qu'attend chacun entre ses parenthèses ?
+  - Sans heure dans le texte, strptime renvoie-t-il un datetime.datetime ou un datetime.date ? (à vérifier avec type())
+  - Synchroniser les deux PC par GitHub : git pull en début de séance, commit et git push en fin de séance
+  - Hors planning : que se passe-t-il chez quelqu'un qui clone le dépôt, sans dossier donnees/ ? (toujours en suspens)

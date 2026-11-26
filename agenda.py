@@ -20,7 +20,7 @@ def charger(chemin):
             chargement = json.load(fichier_json)
             return chargement
     except FileNotFoundError:
-        print("Fichier introuvable, l'agenda a été créé")
+        print("Fichier introuvable")
         return chargement
     except json.decoder.JSONDecodeError:
         print("Fichier abîmé")
@@ -92,7 +92,7 @@ def reste(agenda, ressource, date_limite, reserve_depart):
     for entree in agenda:
         if entree['debut'][:10] <= date_limite:
             for ress in entree["ressources"]:
-                 if ress['nom'] == ressource:
+                if ress['nom'] == ressource:
                     reserve += ress['quantite']
     return reserve
 
@@ -100,5 +100,7 @@ def reste(agenda, ressource, date_limite, reserve_depart):
 
 agenda = charger("donnees/agenda.json")
 
+
 if agenda is not None:
+    afficher_semaine(agenda, "2024-06-01", "2024-06-07")
     sauvegarder(agenda, "donnees/agenda.json")
